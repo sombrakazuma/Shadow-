@@ -1,7 +1,7 @@
 {
   "facebookAccount": {
-    "email": "",
-    "password": "",
+    "email": "samuelzolakabandudi@gmail.com",
+    "password": "samuel20",
     "2FASecret": "",
     "i_user": "",
     "proxy": null,
@@ -16,17 +16,14 @@
     "enable": false,
     "ignoreCommand": []
   },
-  "adminBot": [
-    "",
-    ""
-  ],
+  "adminBot": ["100080355760429"],
   "whiteListMode": {
     "enable": false,
     "whiteListIds": [],
     "notes": "if you enable this feature, only the ids in the whiteListIds section can use the bot"
   },
-  "nickNameBot": "Your_Bot_Name",
-  "prefix": "/",
+  "nickNameBot": "꧁ᎯᏝᎽᎯ ᏰᎧᏖ꧂",
+  "prefix": "*",
   "database": {
     "type": "sqlite",
     "uriMongodb": "",
