@@ -46,7 +46,7 @@ module.exports = {
 
       msg +=`⚙️| 𝐒𝐚𝐢𝐬𝐢𝐬 ${prefix}𝐡𝐞𝐥𝐩 𝐬𝐮𝐢𝐯𝐢 𝐝𝐮 𝐧𝐨𝐦 𝐝𝐞 𝐥𝐚 𝐜𝐨𝐦𝐦𝐚𝐧𝐝𝐞 𝐩𝐨𝐮𝐫 𝐩𝐥𝐮𝐬 𝐝𝐞 𝐝𝐞𝐭𝐚𝐢𝐥𝐬 𝐬𝐮𝐫 𝐥𝐚 𝐜𝐨𝐦𝐦𝐚𝐧𝐝𝐞\n`;
 
-      msg +=` 𝐡𝐞𝐥𝐥𝐨 👋 𝐥'𝐚𝐦𝐢 (𝐞) 𝐫𝐞𝐣𝐨𝐢𝐧𝐭 𝐦𝐨𝐧 𝐠𝐫𝐨𝐮𝐩𝐞 𝐞𝐧 𝐮𝐭𝐢𝐥𝐢𝐬𝐚𝐧𝐭 𝐥𝐚 𝐜𝐦𝐝 ${prefix}𝐚𝐥𝐲𝐚𝐠𝐜.🍂 
+      msg +=` 𝐡𝐞𝐥𝐥𝐨 👋 𝐥'𝐚𝐦𝐢 (𝐞) 𝐫𝐞𝐣𝐨𝐢𝐧𝐭 𝐦𝐨𝐧 𝐠𝐫𝐨𝐮𝐩𝐞 𝐞𝐧 𝐮𝐭𝐢𝐥𝐢𝐬𝐚𝐧𝐭 𝐥𝐚 𝐜𝐦𝐝 ${prefix}𝐚𝐥𝐲𝐚𝐠𝐜.🍂\n`; 
       await message.reply({ body: msg });
     } else {
       const commandName = args[0].toLowerCase();
