@@ -9,7 +9,7 @@
     shortDescription: "Amuses toi bien au jeu du hasard",
     longDescription: "Seul le hasard tu rendras riche ou pauvre...Bonne chance",
     category: "game",
-    guide: "{pn} <Sonic/Sonic.exe> <amount of money>"
+    guide: "{pn} <Shadow/Dark.shadow> <amount of money>"
   },
 
   onStart: async function ({ args, message, usersData, event }) {
