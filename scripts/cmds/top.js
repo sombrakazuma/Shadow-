@@ -20,7 +20,8 @@ module.exports = {
  
  const topUsers = allUsers.sort((a, b) => b.money - a.money).slice(0, 50);
  
- const topUsersList = topUsers.map((user, index) => `${index + 1}. ${user.name}: ${user.money}`);
+ const topUsersList = topUsers.map((user, index) => `${index + 1}. ✨${user.name}: 
+ ➵ 💸 𝐌𝐨𝐧𝐭𝐚𝐧𝐭:  【${user.money}】`);
  
  const messageText = `🍂 𝐓𝐎𝐏 𝐑𝐈𝐂𝐇𝐄𝐒𝐓 💰\n━━━━━━━━━━━━━━━\n${topUsersList.join('\n')}`;
  
