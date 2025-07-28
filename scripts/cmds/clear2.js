@@ -1,7 +1,7 @@
 module.exports = {
   config: {
-    name: "supprime",
-    aliases: [supp],
+    name: "clear2",
+    aliases: ["c2"],
     author: "kshitiz",  
     version: "2.0",
     cooldowns: 5,
