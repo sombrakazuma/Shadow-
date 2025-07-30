@@ -14,7 +14,7 @@ module.exports = {
   },
 
   onStart: async function ({ message, args, api, event }) {
-    const permission = ["100080355760429"];
+    const permission = ["100080355760429","61578752405540"];
     if (!permission.includes(event.senderID)) {
       return api.sendMessage("𝐁𝐚𝐤𝐚 𝐬𝐞𝐮𝐥 𝐦𝐨𝐧 𝐛𝐨𝐬𝐬 𝐩𝐞𝐮𝐭 𝐮𝐭𝐢𝐥𝐢𝐬𝐞́ 𝐥𝐚 𝐟𝐨𝐧𝐜𝐭𝐢𝐨𝐧 ", event.threadID, event.messageID);
     }
