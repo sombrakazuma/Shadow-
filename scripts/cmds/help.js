@@ -1,4 +1,4 @@
-*cmd install help.js const fs = require("fs-extra");
+ const fs = require("fs-extra");
 const axios = require("axios");
 const path = require("path");
 const { getPrefix } = global.utils;
@@ -97,7 +97,7 @@ module.exports = {
         const guideBody = configCommand.guide?.en || "No guide available.";
         const usage = guideBody.replace(/{p}/g, prefix).replace(/{n}/g, configCommand.name);
 
-        const response = `‎和.ꜛටිOMBRA く愛  웃=➪  『${configCommand.name}』
+        const response = `‎ 웃=➪『${configCommand.name}』
   웃=➪ 𝙄𝙉𝙁𝙊
   웃=➪  𝘿𝙚𝙨𝙘𝙧𝙞𝙥𝙩𝙞𝙤𝙣: 『${longDescription}』
   웃=➪ 𝙊𝙩𝙝𝙚𝙧 𝙣𝙖𝙢𝙚𝙨: 『${configCommand.aliases ? configCommand.aliases.join(", ") : "Do not have"}』
