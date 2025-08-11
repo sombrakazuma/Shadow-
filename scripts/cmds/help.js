@@ -69,7 +69,7 @@ module.exports = {
       categories[category].push(name);
     }
 
-    const helpListImages = ["http://goatbiin.onrender.com/AaRMu1TmJ.gif"];
+    const helpListImages = ["https://i.imgur.com/JVB8rL0.jpeg"];
     const helpListImage = helpListImages[Math.floor(Math.random() * helpListImages.length)];
 
     const rawInput = args.join(" ").trim();
