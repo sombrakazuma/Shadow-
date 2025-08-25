@@ -1,131 +1,75 @@
-const axios = require("axios");
+const axios = require('axios');
 
-const baseApiUrl = async () => {
-  const base = await axios.get("https://raw.githubusercontent.com/mahmudx7/exe/main/baseApiUrl.json");
-  return base.data.mahmud;
-};
+const API_URL = 'https://messie-flash-api-ia.vercel.app/chat?prompt=';
+const API_KEY = 'messie12356osango2025jinWoo';
+
+async function getAIResponse(input) {
+    try {
+        const response = await axios.get(`${API_URL}${encodeURIComponent(input)}&apiKey=${API_KEY}`, {
+            timeout: 10000,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.data?.parts?.[0]?.reponse) return response.data.parts[0].reponse;
+        if (response.data?.response) return response.data.response;
+        return "Désolé, réponse non reconnue de l'API";
+    } catch (error) {
+        console.error("API Error:", error.response?.status, error.message);
+        return "Erreur de connexion au serveur IA";
+    }
+}
+
+function toBoldFont(text) {
+    const offsetUpper = 0x1D400 - 65;
+    const offsetLower = 0x1D41A - 97; 
+
+    return text.split('').map(char => {
+        const code = char.charCodeAt(0);
+        if (code >= 65 && code <= 90) return String.fromCodePoint(code + offsetUpper);
+        if (code >= 97 && code <= 122) return String.fromCodePoint(code + offsetLower);
+        return char;
+    }).join('');
+}
+
+function formatResponse(content) {
+    const styled = toBoldFont(content);
+    return `${styled}`;}
 
 module.exports = {
-  config: {
-    name: "نوكس",
-    version: "1.7",
-    author: "MahMUD",
-    countDown: 5,
-    role: 0,
-    category: "ai",
-    guide: {
-      en: "",
+    config: {
+        name: 'ai',
+        author: 'Messie Osango',
+        version: '2.0',
+        role: 0,
+        category: 'AI',
+        shortDescription: 'IA intelligente',
+        longDescription: 'Une IA capable de répondre à diverses questions et demandes.',
+        keywords: ['ai']
     },
-  },
+    onStart: async function({ api, event, args }) {
+        const input = args.join(' ').trim();
+        if (!input) return api.sendMessage(formatResponse("【⚚⊰𝘼𝙇𝙔𝘼 𝙍-𝙊𝘽𝙊𝙏 𝘼𝙄⊱】–シ\n━━━━━━━━━━━━━━━\n 𝐒𝐚𝐥𝐮𝐭 👋 𝐥'𝐚𝐦𝐢 (𝐞) 𝐦𝐨𝐢 𝐜'𝐞𝐬𝐭【⚚⊰𝘼𝙇𝙔𝘼  𝙍-𝙊𝘽𝙊𝙏 𝘼𝙄⊱】–シ, 𝐪𝐮𝐞𝐥𝐥𝐞 𝐞𝐬𝐭 𝐯𝐨𝐭𝐫𝐞 𝐪𝐮𝐞𝐬𝐭𝐢𝐨𝐧 𝐝𝐮 𝐣𝐨𝐮𝐫..?\n━━━━━━━━━━━━━━━\n【⚚⊰𝘼𝙇𝙔𝘼 𝙍-𝙊𝘽𝙊𝙏 𝘼𝙄⊱】–シ"), event.threadID);
 
-  onStart: async function ({ api, args, event }) {
-    const apiUrl = `${await baseApiUrl()}/api/gemini`;
-    const prompt = args.join(" ");
-    
-    if (!prompt) {
-      return api.sendMessage(
-        ` 
-        نـــوكس AI 🌟
-        
-        • ذكاء اصطناعي متطور ، يملك خاصية البحث في الغوغل عن طريق المصادر الموثوقة ، اي ان معلوماته صحيحة يمكنك طرح اسئلتك و سيقوم بالبحث عن إجابة و صياغة إجابة مثالية في ثواني .
-        
-        🌍 خطوات البحث :
-        
-        1. بحث في غوغل
-        2. تصفح النتائج
-        3. تصفح صفحات الموقع
-        4. استخراج معلومات من الصور
-        `,
-        event.threadID,
-        event.messageID
-      );
+        try {
+            const res = await getAIResponse(input);
+            api.sendMessage(formatResponse(res), event.threadID, event.messageID);
+        } catch {
+            api.sendMessage(formatResponse("Erreur de traitement"), event.threadID);
+        }
+    },
+    onChat: async function({ event, message }) {
+        const triggers = ['ai'];
+        const body = event.body.toLowerCase();
+        if (!triggers.some(t => body.startsWith(t))) return;
+
+        const input = body.slice(body.split(' ')[0].length).trim();
+        if (!input) return message.reply(formatResponse("Salut, comment puis-je vous aider ?"));
+
+        try {
+            const res = await getAIResponse(input);
+            message.reply(formatResponse(res));
+        } catch {
+            message.reply(formatResponse("Erreur de service"));
+        }
     }
-
-    let requestBody = { prompt };
-
-    if (event.type === "message_reply" && event.messageReply.attachments.length > 0) {
-      const attachment = event.messageReply.attachments[0];
-      if (attachment.type === "photo") {
-        requestBody.imageUrl = attachment.url;
-      }
-    }
-
-    try {
-      const response = await axios.post(apiUrl, requestBody, {
-        headers: {
-          "Content-Type": "application/json",
-          "author": module.exports.config.author,
-        },
-      });
-
-      if (response.data.error) {
-        return api.sendMessage(response.data.error, event.threadID, event.messageID);
-      }
-
-      const replyText = response.data.response || "No response received.";
-
-      api.sendMessage(
-        { body: replyText },
-        event.threadID,
-        (error, info) => {
-          if (!error) {
-            global.GoatBot.onReply.set(info.messageID, {
-              commandName: this.config.name,
-              type: "reply",
-              messageID: info.messageID,
-              author: event.senderID,
-              link: replyText,
-            });
-          }
-        },
-        event.messageID
-      );
-    } catch (error) {
-      console.error("Error:", error);
-      api.sendMessage("An error occurred. Please try again later.", event.threadID, event.messageID);
-    }
-  },
-
-  onReply: async function ({ api, args, event, Reply }) {
-    if (Reply.author !== event.senderID) return;
-    
-    const apiUrl = `${await baseApiUrl()}/api/gemini`;
-    const prompt = args.join(" ");
-    if (!prompt) return;
-
-    try {
-      const response = await axios.post(apiUrl, { prompt }, {
-        headers: {
-          "Content-Type": "application/json",
-          "author": module.exports.config.author,
-        },
-      });
-
-      if (response.data.error) {
-        return api.sendMessage(response.data.error, event.threadID, event.messageID);
-      }
-
-      const replyText = response.data.response || "No response received.";
-
-      api.sendMessage(
-        { body: replyText },
-        event.threadID,
-        (error, info) => {
-          if (!error) {
-            global.GoatBot.onReply.set(info.messageID, {
-              commandName: this.config.name,
-              type: "reply",
-              messageID: info.messageID,
-              author: event.senderID,
-              link: replyText,
-            });
-          }
-        },
-        event.messageID
-      );
-    } catch (error) {
-      console.error("Error:", error);
-      api.sendMessage("Error occurred, Please try again later 🥹", event.threadID, event.messageID);
-    }
-  },
 };
