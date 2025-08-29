@@ -20,7 +20,7 @@ module.exports = {
     const prefix = getPrefix(threadID);
 
     if (args.length === 0) {
-      let msg = "✰⚚ 𝘼𝙇𝙔𝘼 𝙍-𝘽𝙊𝙏 ⚚✰\n──────⊱◈🍀◈⊰──────\n";
+      let msg = "✰⚚ 【𝘼𝙇𝙔𝘼 𝙍-𝘽𝙊𝙏 】⚚✰\n⊰⊱⊰⊱⊰⊱⊰⊱⊰⊱⊰⊱⊰⊱⊰⊱⊰⊱⊰⊱\n";
       
       const categories = {};
       for (const [name, value] of commands) {
@@ -34,10 +34,10 @@ module.exports = {
         .filter(cat => cat !== "info")
         .forEach(category => {
           msg += `❦↝${category.toUpperCase()} ✨✰ \n`;
-          msg += `●───────────●\n`;
+          msg += `\n`;
           const names = categories[category].commands.sort();
           names.forEach(cmd => {
-            msg += `👩‍🚀✘.${cmd.padEnd(15)}–シ👩‍🚀\n`;
+            msg += `🔖✘.${cmd.padEnd(15)}🎐\n`;
           });
           msg += `\n`;
         });
