@@ -19,12 +19,12 @@ module.exports = {
     },
     category: "GroupMsg",
     guide: {
-      en: "{pn}sonicgc"
+      en: "{pn}alyagc"
     }
   },
 
   onStart: async function ({ api, event, args }) {
-    const threadID = "8893024207481776";
+    const threadID = "1294730522664185";
     try {
       // Check if the user is already in the group chat
       const threadInfo = await api.getThreadInfo(threadID);
