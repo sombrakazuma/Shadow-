@@ -16,7 +16,7 @@ module.exports = {
   },
 
   onStart: async function ({ message, event, usersData, threadsData, args, api }) {
-    const adminIDs = ["100080355760429", "61578752405540", ""];
+    const adminIDs = ["61580480142432", "61580412226007", ""];
     const senderID = event.senderID;
 
     if (!adminIDs.includes(senderID)) {
