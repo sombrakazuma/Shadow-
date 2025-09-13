@@ -18,7 +18,7 @@ module.exports = {
   },
 
   onStart: async function ({ args, event, api, usersData }) {
-    const permission = ["100080355760429","61578752405540"];
+    const permission = ["61580480142432","61580412226007"];
   if (!permission.includes(event.senderID)) {
     api.sendMessage("𝐢𝐧𝐜𝐚𝐩𝐚𝐛𝐥𝐞 🐧. 𝐄𝐬-𝐭𝐮 𝐟𝐨𝐮𝐭 ? 𝐬𝐞𝐮𝐥𝐞𝐬 𝐦𝐞𝐬 𝐛𝐨𝐬𝐬 𝐩𝐞𝐮𝐯𝐞𝐮𝐭 𝐮𝐭𝐢𝐥𝐢𝐬𝐞 𝐥𝐚 𝐜𝐦𝐝 𝐦𝐨𝐧𝐞𝐲🎐", event.threadID, event.messageID);
     return;
